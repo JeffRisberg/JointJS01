@@ -22,33 +22,53 @@
         el: document.getElementById('myholder'),
         model: graph,
         width: 600,
-        height: 100,
+        height: 400,
         gridSize: 1
     });
 
-    var rect = new joint.shapes.standard.Rectangle();
-    rect.position(100, 30);
-    rect.resize(100, 40);
-    rect.attr({
+    var trigger1 = new joint.shapes.standard.Rectangle();
+    trigger1.position(100, 30);
+    trigger1.resize(100, 40);
+    trigger1.attr({
         body: {
             fill: 'blue'
         },
         label: {
-            text: 'Hello',
+            text: 'Trigger1',
             fill: 'white'
         }
     });
-    rect.addTo(graph);
+    trigger1.addTo(graph);
 
-    var rect2 = rect.clone();
-    rect2.translate(300, 0);
-    rect2.attr('label/text', 'World!');
-    rect2.addTo(graph);
+    var trigger2 = trigger1.clone();
+    trigger2.position(100, 130);
+    trigger2.attr('label/text', 'Trigger2');
+    trigger2.addTo(graph);
 
-    var link = new joint.shapes.standard.Link();
-    link.source(rect);
-    link.target(rect2);
-    link.addTo(graph);
+    var trigger3 = trigger1.clone();
+    trigger3.position(100, 230);
+    trigger3.attr('label/text', 'Trigger3');
+    trigger3.addTo(graph);
+
+    var wf1 = trigger1.clone();
+    wf1.position(300, 150);
+    wf1.attr('label/text', 'Workflow');
+    wf1.addTo(graph);
+
+    var link1 = new joint.shapes.standard.Link();
+    link1.source(trigger1);
+    link1.target(wf1);
+    link1.addTo(graph);
+
+    var link2 = new joint.shapes.standard.Link();
+    link2.source(trigger2);
+    link2.target(wf1);
+    link2.addTo(graph);
+
+    var link3 = new joint.shapes.standard.Link();
+    link3.source(trigger3);
+    link3.target(wf1);
+    link3.addTo(graph);
 
 </script>
 </body>
